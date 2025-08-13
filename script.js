@@ -121,10 +121,16 @@ clearAll.addEventListener("click", () => {
 });
 
 clearOne.addEventListener("click", () => {
-  screen.innerText = screen.innerText.slice(0, screen.innerText.length - 1);
-  if (operation == undefined)
-    operand1 = operand1 = operand1.slice(0, operand1.length - 1);
-  else operand2 = operand2 = operand2.slice(0, operand2.length - 1);
+  screen.innerText = screen.innerText.slice(0, -1);
+
+  if (operation === undefined) {
+    operand1 = screen.innerText || "";
+  } else {
+    const [first, second] = screen.innerText.split(operation);
+    operand1 = first || "";
+    operand2 = second || "";
+  }
+
   console.log(`Operation 1 clear: ${operand1}`);
   console.log(`Operation 2 clear: ${operand2}`);
 });
