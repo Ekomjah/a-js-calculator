@@ -105,7 +105,7 @@ operationBtn.forEach((btn) => {
     if (operand1 !== "") {
       screen.innerText += operation;
     } else {
-      operand1 = "0"; // treat operator-first as 0 <op>
+      operand1 = "0";
       screen.innerText = "0" + operation;
     }
   });
