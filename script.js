@@ -5,6 +5,7 @@ const resultBtn = document.querySelector(".result");
 const clearAll = document.querySelector(".AC");
 const clearOne = document.querySelector(".clear");
 const sqrt = document.querySelector(".sqrt");
+const sqr = document.querySelector(".sqr");
 function calculateSum(num1, num2) {
   return num1 + num2;
 }
@@ -48,7 +49,7 @@ function operate(operand1, operand2, operation) {
   } else if (operation == "^2") {
     return calculateSquare(operand1);
   } else if (operation == "sqrt") {
-    return calculateSquareRoot(operand2);
+    return calculateSquareRoot(operand1);
   } else if (operation == "%") {
     return calculatePercentage(operand1);
   } else if (operation == undefined) {
@@ -57,14 +58,14 @@ function operate(operand1, operand2, operation) {
     return "Math Error!";
   }
 }
-sqrt.addEventListener("click", () => {
-  if (operand1 !== "") {
-    screen.innerText = operate(Number(operand1), 0, "sqrt");
-    operand1 = screen.innerText;
-  }
-});
+
 function resultFunc() {
-  screen.innerText = operate(Number(operand1), Number(operand2), operation);
+  let text = operate(Number(operand1), Number(operand2), operation);
+  if (isNaN(text)) {
+    screen.innerText = `Math Error`;
+    return;
+  }
+  screen.innerText = text;
   operand1 = screen.innerText;
   operand2 = "";
 }
@@ -87,21 +88,25 @@ numericBtn.forEach((btn) => {
 
 operationBtn.forEach((btn) => {
   btn.addEventListener("click", (event) => {
-    let some = btn.value;
+    const some = btn.value;
     if (operand2 !== "") {
       resultFunc();
       operation = some;
       screen.innerText += operation;
+      return;
+    }
+    const trailingOpRegex = /(\^2|sqrt|[+\-*/%])$/;
+    if (screen.innerText !== "" && trailingOpRegex.test(screen.innerText)) {
+      screen.innerText = screen.innerText.replace(trailingOpRegex, some);
+      operation = some;
+      return;
+    }
+    operation = some;
+    if (operand1 !== "") {
+      screen.innerText += operation;
     } else {
-      operation = btn.value;
-      if (operand1 !== "") {
-        screen.innerText += operation;
-        console.log(operation);
-      } else if (operation == "sqrt" && operand1 === "") {
-        screen.innerText = operation;
-      } else {
-        screen.innerText = `Click 'AC' and add an operand first!`;
-      }
+      operand1 = "0"; // treat operator-first as 0 <op>
+      screen.innerText = "0" + operation;
     }
   });
 });
@@ -117,6 +122,23 @@ clearAll.addEventListener("click", () => {
 
 clearOne.addEventListener("click", () => {
   screen.innerText = screen.innerText.slice(0, screen.innerText.length - 1);
-  if (operation == undefined) operand1 = operand1.slice(0, operand1.length - 1);
-  else operand2 = operand2.slice(0, operand2.length - 1);
+  if (operation == undefined)
+    operand1 = operand1 = operand1.slice(0, operand1.length - 1);
+  else operand2 = operand2 = operand2.slice(0, operand2.length - 1);
+  console.log(`Operation 1 clear: ${operand1}`);
+  console.log(`Operation 2 clear: ${operand2}`);
+});
+
+sqrt.addEventListener("click", () => {
+  if (operand1 !== "") {
+    screen.innerText = operate(Number(operand1), 0, "sqrt");
+    operand1 = screen.innerText;
+  }
+});
+
+sqr.addEventListener("click", () => {
+  if (operand1 !== "") {
+    screen.innerText = operate(Number(operand1), 0, "^2");
+    operand1 = screen.innerText;
+  }
 });

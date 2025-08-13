@@ -67,12 +67,13 @@ body {
   padding: 0.3em 1.6em 0.6em 0.5em;
   border: 2px solid grey;
   height: 2.5em;
+  background-color: #c5e2d2;
 }
 
 button {
   background-color: black;
   color: white;
-  border: 0;
+  border: 2px solid;
   border-radius: 10px;
   padding: 1em;
 }
@@ -92,4 +93,19 @@ footer {
 h2 {
   font-family: Arial, Helvetica, sans-serif;
   text-align: center;
+}
+
+button:hover {
+  opacity: 80%;
+}
+
+.cleaners {
+  background-color: rgb(29, 29, 158);
+  color: #fff;
+}
+
+button:disabled {
+  background-color: gray;
+  cursor: not-allowed;
+  opacity: 0.6;
 }
