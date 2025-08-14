@@ -7,6 +7,7 @@ const clearOne = document.querySelector(".clear");
 const sqrt = document.querySelector(".sqrt");
 const sqr = document.querySelector(".sqr");
 const pi = document.querySelector(".pi");
+const buttons = document.querySelectorAll("button");
 function calculateSum(num1, num2) {
   return num1 + num2;
 }
@@ -168,4 +169,21 @@ sqr.addEventListener("click", () => {
     screen.innerText = text;
     operand1 = screen.innerText;
   }
+});
+
+buttons.forEach((btn) => {
+  document.addEventListener("keydown", (e) => {
+    console.log(e.key);
+    if (e.key === "Enter" || e.key == "=") {
+      resultFunc();
+      return;
+    } else if (e.key == "Backspace") {
+      clearOne.click();
+      return;
+    } else if (e.key == btn.value) {
+      btn.click();
+      return;
+    }
+    return;
+  });
 });
