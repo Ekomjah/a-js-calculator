@@ -6,6 +6,7 @@ const clearAll = document.querySelector(".AC");
 const clearOne = document.querySelector(".clear");
 const sqrt = document.querySelector(".sqrt");
 const sqr = document.querySelector(".sqr");
+const pi = document.querySelector(".pi");
 function calculateSum(num1, num2) {
   return num1 + num2;
 }
@@ -63,6 +64,12 @@ function resultFunc() {
   let text = operate(Number(operand1), Number(operand2), operation);
   if (isNaN(text)) {
     screen.innerText = `Math Error`;
+    return;
+  }
+  if (!Number.isInteger(text)) {
+    screen.innerText = text.toFixed(5);
+    operand1 = screen.innerText;
+    operand2 = "";
     return;
   }
   screen.innerText = text;
@@ -137,14 +144,28 @@ clearOne.addEventListener("click", () => {
 
 sqrt.addEventListener("click", () => {
   if (operand1 !== "") {
-    screen.innerText = operate(Number(operand1), 0, "sqrt");
+    let text = operate(Number(operand1), 0, "sqrt");
+    if (!Number.isInteger(text)) {
+      screen.innerText = text.toFixed(5);
+      operand1 = screen.innerText;
+      operand2 = "";
+      return;
+    }
+    screen.innerText = text;
     operand1 = screen.innerText;
   }
 });
 
 sqr.addEventListener("click", () => {
   if (operand1 !== "") {
-    screen.innerText = operate(Number(operand1), 0, "^2");
+    let text = operate(Number(operand1), 0, "^2");
+    if (!Number.isInteger(text)) {
+      screen.innerText = text.toFixed(5);
+      operand1 = screen.innerText;
+      operand2 = "";
+      return;
+    }
+    screen.innerText = text;
     operand1 = screen.innerText;
   }
 });
