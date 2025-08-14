@@ -175,8 +175,8 @@ buttons.forEach((btn) => {
   document.addEventListener("keydown", (e) => {
     console.log(e.key);
     if (e.key === "Enter" || e.key == "=") {
-      resultFunc();
-      return;
+      resultBtn.click();
+      return;            
     } else if (e.key == "Backspace") {
       clearOne.click();
       return;
