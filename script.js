@@ -82,12 +82,12 @@ numericBtn.forEach((btn) => {
   btn.addEventListener("click", (event) => {
     if (operation !== undefined) {
       operand2 += btn.value;
-      screen.innerText += btn.value;
+      screen.innerText += btn.textContent.trim();
       console.log(`Operation 1: ${operand1}`);
       console.log(`Operation 2: ${operand2}`);
     } else {
       operand1 += btn.value;
-      screen.innerText = operand1;
+      screen.innerText += btn.textContent.trim();
       console.log(`Operation 1: ${operand1}`);
       console.log(`Operation 2: ${operand2}`);
     }
@@ -176,7 +176,7 @@ buttons.forEach((btn) => {
     console.log(e.key);
     if (e.key === "Enter" || e.key == "=") {
       resultBtn.click();
-      return;            
+      return;
     } else if (e.key == "Backspace") {
       clearOne.click();
       return;
