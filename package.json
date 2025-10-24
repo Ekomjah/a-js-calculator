@@ -1,0 +1,19 @@
+{
+  "name": "a-js-calculator",
+  "version": "1.0.0",
+  "description": "A lightweight, vanilla JavaScript calculator web app — basic arithmetic, unary ops (square, sqrt, percent), and an easy-to-extend UI.",
+  "main": "script.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Ekomjah/a-js-calculator.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Ekomjah/a-js-calculator/issues"
+  },
+  "homepage": "https://github.com/Ekomjah/a-js-calculator#readme"
+}
